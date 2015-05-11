@@ -1,0 +1,23 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  username: <%= ENV['SHANNON_USER'] %>
+  password: <%= ENV['SHANNON_PASSWORD'] %>
+  host: <%= ENV['SHANNON_HOST'] %>
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  database: <%= ENV['SHANNON_DEV_DB'] %>
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *default
+  database: <%= ENV['SHANNON_TEST_DB'] %>
+
+production:
+  <<: *default
+  database: <%= ENV['SHANNON_PROD_DB'] %>
